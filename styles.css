@@ -331,8 +331,42 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   background: #254a40;
   color: #fff;
 }
-.works-sort { margin-left: auto; }
+.works-sort { margin-left: auto; 
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
 
+.work-card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.work-copy {
+  padding: 20px 22px 24px;
+}
+
+.work-card:hover,
+.work-card:focus-within {
+  /* ============ TODO 04 的后一半：鼠标移上去卡片轻轻上浮 ============
+   * transform 改变元素的**视觉**位置、大小、角度，
+   * 但**不会重新挤动**周围的元素——这是它和 margin/top 最大的区别，
+   * 也是它性能好的原因（浏览器不用重新计算整页布局）。
+   *
+   *   translateY(-4px)   沿垂直方向移动。Y 轴向下为正，所以负数是向上
+   *
+   * 请把 none 改成 translateY(-4px)。
+   *
+   * 注意上面的选择器里还有 :focus-within——意思是"内部任何元素获得键盘焦点时"。
+   * 手机上没有鼠标、永远不会 hover，键盘用户也用不上 hover，
+   * 所以交互效果要把 :focus 一起写上。
+   *
+   * 操作前：鼠标移到卡片上没有任何反应。
+   * 操作后：卡片轻轻上浮 4px，阴影加深，像被"拿起来"一点。
+   *         按 Tab 键让焦点进入卡片里的链接，也有同样效果。
+   * ================================================================ */
+  transform: translateY(-4px) rotate(20deg);
+  box-shadow: 0 160px 380px rgba(216, 3, 56, 0.54);
+}
 /* 年份徽标：贴在封面右上角 */
 .work-card { position: relative; }
 .work-year {
